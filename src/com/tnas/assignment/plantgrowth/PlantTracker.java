@@ -1,4 +1,4 @@
-package com.tnas.assignment.plantgrow;
+package com.tnas.assignment.plantgrowth;
 import java.util.Scanner;
 
 public class PlantTracker {
