@@ -1,4 +1,4 @@
-package com.tnas.assignment.gamecharacter;
+package com.tnas.assignment.game.character;
 
 public enum Weapon {
 	

@@ -1,4 +1,4 @@
-package com.tnas.assignment.gamecharacter;
+package com.tnas.assignment.game.character;
 
 import java.util.Arrays;
 import java.util.List;

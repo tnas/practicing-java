@@ -1,4 +1,4 @@
-package com.tnas.assignment.gamefootball;
+package com.tnas.assignment.game.football;
 
 import java.util.Arrays;
 import java.util.List;
