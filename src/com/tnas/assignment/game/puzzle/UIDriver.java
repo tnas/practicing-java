@@ -45,7 +45,7 @@ public class UIDriver {
 		String rating;
 		do {
 			System.out.println("Please enter the rating for " + currentGame().getName());
-			rating = scanner.next();
+			rating = scanner.nextLine();
 		}while (!currentGame().setRating(rating));
 	}
 	
@@ -53,7 +53,7 @@ public class UIDriver {
 		int players;
 		do {
 			System.out.println("Please enter the number of players for " + currentGame().getName());
-			players = scanner.nextInt();
+			players = Integer.valueOf(scanner.nextLine());
 		}while (!currentGame().setNumberOfPlayers(players));
 	}
 
@@ -66,7 +66,7 @@ public class UIDriver {
 	}
 	
 	public void printGames() {
-		Arrays.asList(this.games).forEach(Game::toString);
+		Arrays.asList(this.games).forEach(System.out::println);
 	}
 	
 	public void close() {

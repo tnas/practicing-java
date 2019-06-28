@@ -50,7 +50,7 @@ public class Game {
 	}
 
 	public boolean setGenre(String genre) {
-		if (!validGenres.contains(genre)) {
+		if (!validGenres.stream().anyMatch(genre::equalsIgnoreCase)) {
 			System.out.println(String.format("Invalid genre. Valid choices are %s", validGenresText));
 			return false;
 		}
@@ -63,7 +63,7 @@ public class Game {
 	}
 
 	public boolean setRating(String rating) {
-		if (!validRatings.contains(rating)) {
+		if (!validRatings.stream().anyMatch(rating::equalsIgnoreCase)) {
 			System.out.println(String.format("Invalid rating. Valid choices are %s", validRatingsText));
 			return false;
 		}
