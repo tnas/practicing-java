@@ -5,3 +5,5 @@ A collection of hands-on assignments for practicing Java
 2. [Plant Growth Tracker](https://github.com/tnas/practicing-java/wiki/Plant-Growth-Tracker): Implement a tracker that logs the growth of a plant.
 3. [Colorful Shapes](https://github.com/tnas/practicing-java/wiki/Colorful-Shapes): Develop a set of inter-related shape and colors classes.
 4. [Amusement Park](https://github.com/tnas/practicing-java/wiki/Amusement-Park): The assignment is to implement a simple amusement park information system that keeps track of admission tickets and merchandise in the gift shop.
+
+# Desafios para Iniciantes na Programação
