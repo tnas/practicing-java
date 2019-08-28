@@ -9,3 +9,5 @@ A collection of hands-on assignments for practicing Java
 # Warm up para Newbies na Programação
 
 1. [Jogo de Adivinhação](https://github.com/tnas/practicing-java/wiki/Jogo-de-Adivinha%C3%A7%C3%A3o)
+2. [Contador de Vogais](https://github.com/tnas/practicing-java/wiki/Contador-de-Vogais)
+3. [Primos de Fibonacci](https://github.com/tnas/practicing-java/wiki/Primos-de-Fibonacci)
