@@ -7,3 +7,5 @@ A collection of hands-on assignments for practicing Java
 4. [Amusement Park](https://github.com/tnas/practicing-java/wiki/Amusement-Park): The assignment is to implement a simple amusement park information system that keeps track of admission tickets and merchandise in the gift shop.
 
 # Warm up para Newbies na Programação
+
+1. [Jogo de Adivinhação](https://github.com/tnas/practicing-java/wiki/Jogo-de-Adivinha%C3%A7%C3%A3o)
