@@ -12,3 +12,4 @@ A collection of hands-on assignments for practicing Java
 2. [Contador de Vogais](https://github.com/tnas/practicing-java/wiki/Contador-de-Vogais)
 3. [Primos de Fibonacci](https://github.com/tnas/practicing-java/wiki/Primos-de-Fibonacci)
 4. [Ordenação baseada em Dígitos](https://github.com/tnas/practicing-java/wiki/Ordena%C3%A7%C3%A3o-baseada-em-D%C3%ADgitos)
+5. [Intervalos de Ímpares](https://github.com/tnas/practicing-java/wiki/Intervalos-de-%C3%8Dmpares)
