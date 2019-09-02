@@ -14,3 +14,4 @@ A collection of hands-on assignments for practicing Java
 4. [Ordenação baseada em Dígitos](https://github.com/tnas/practicing-java/wiki/Ordena%C3%A7%C3%A3o-baseada-em-D%C3%ADgitos)
 5. [Intervalos de Ímpares](https://github.com/tnas/practicing-java/wiki/Intervalos-de-%C3%8Dmpares)
 6. [Distância de Hamming](https://github.com/tnas/practicing-java/wiki/Dist%C3%A2ncia-de-Hamming)
+7. [Dias entre Datas](https://github.com/tnas/practicing-java/wiki/Dias-entre-Datas)
