@@ -17,4 +17,4 @@ A collection of hands-on assignments for practicing Java
 7. [Dias entre Datas](https://github.com/tnas/practicing-java/wiki/Dias-entre-Datas)
 8. [Iluminação Pública](https://github.com/tnas/practicing-java/wiki/Ilumina%C3%A7%C3%A3o-P%C3%BAblica)
 9. [Partidas Aleatórias](https://github.com/tnas/practicing-java/wiki/Partidas-Aleat%C3%B3rias)
-
+10. [Diferenças de Textos](https://github.com/tnas/practicing-java/wiki/Diferen%C3%A7a-de-Textos)
