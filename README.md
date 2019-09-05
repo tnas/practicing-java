@@ -18,3 +18,4 @@ A collection of hands-on assignments for practicing Java
 8. [Iluminação Pública](https://github.com/tnas/practicing-java/wiki/Ilumina%C3%A7%C3%A3o-P%C3%BAblica)
 9. [Partidas Aleatórias](https://github.com/tnas/practicing-java/wiki/Partidas-Aleat%C3%B3rias)
 10. [Diferenças de Textos](https://github.com/tnas/practicing-java/wiki/Diferen%C3%A7a-de-Textos)
+11. [Intercalação de Pares e Ímpares](https://github.com/tnas/practicing-java/wiki/Intercala%C3%A7%C3%A3o-de-Pares-e-%C3%8Dmpares)
