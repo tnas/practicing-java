@@ -5,8 +5,19 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * This class represents the UNG GPA Calculator. It is responsible for 
+ * interact with the user in order to get data to be used for
+ * the GPA calculus.
+ * 
+ * @since October 4 2019
+ *
+ */
 public class GPACalculator {
 	
+	/**
+	 * Method that prints the Quality Points chart in the console.
+	 */
 	private static void showQualityPointsChart() {
 		System.out.println("--------- Quality Points Chart ---------");
 		System.out.println("A  4.00		A- 3.67");
@@ -18,6 +29,7 @@ public class GPACalculator {
 	
 	public static void main(String[] args) {
 		
+		// Prompting the full name of the user and the respective major
 		Scanner scan = new Scanner(System.in);
 		scan.useLocale(Locale.US);
 		
