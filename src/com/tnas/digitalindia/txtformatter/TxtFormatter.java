@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,17 +37,23 @@ public class TxtFormatter {
 			File file = new File(fileName);
 			file.createNewFile();
 			
-			for (String line : lines) {
+			if (Integer.valueOf(path.toString().split("\\.")[0]) % 2 == 0) {
 				
-				String formattedLine = new String();
-				String[] letters = line.split("");
-				
-				for (int pos = 0; pos < letters.length; ++pos) {
-					if (pos % 2 == 0 || letters[pos].equals(" ")) 
-						formattedLine = formattedLine.concat(letters[pos]);
-				}
-				
-				Files.write(pathFileName, formattedLine.getBytes(), StandardOpenOption.APPEND);
+				for (String line : lines) {
+					
+					String formattedLine = new String();
+					String[] letters = line.split("");
+					
+					for (int pos = 0; pos < letters.length; ++pos) {
+						if (pos % 2 == 0 || letters[pos].equals(" ")) 
+							formattedLine = formattedLine.concat(letters[pos]);
+					}
+					
+					Files.write(pathFileName, formattedLine.getBytes(), StandardOpenOption.APPEND);
+				}	
+			}
+			else {
+				Files.copy(Paths.get(configFilePath.concat(path.toString())), pathFileName, StandardCopyOption.REPLACE_EXISTING);
 			}
 		}
 
