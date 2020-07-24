@@ -15,6 +15,11 @@ public class SelectionSort {
 		this.elements = new Random().ints(this.numberOfElements, 0, MAX_NUMBER).toArray();
 	}
 	
+	public SelectionSort(int[] elements) {
+		this.elements = elements;
+		this.numberOfElements = elements.length;
+	}
+	
 	public void run() {
 		
 		for (int index = 0; index < this.numberOfElements - 1; ++index) {
@@ -29,6 +34,26 @@ public class SelectionSort {
 			elements[index] = swap;
 		}
 	}
+	
+	
+	public void runTraced() {
+		
+		System.out.println(this);
+		
+		for (int index = 0; index < this.numberOfElements - 1; ++index) {
+			
+			int indexMinimal = index;
+			
+			for (int idxMin = index + 1; idxMin < this.numberOfElements; ++idxMin) 
+				if (elements[idxMin] < elements[indexMinimal]) indexMinimal = idxMin;
+			
+			int swap = elements[indexMinimal];
+			elements[indexMinimal] = elements[index];
+			elements[index] = swap;
+			System.out.println(this);
+		}
+	}
+	
 	
 	public String toString() {
 		return Arrays.toString(this.elements);
