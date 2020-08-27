@@ -49,7 +49,7 @@ public class ConsultingFirm {
 		System.out.println("Subtotal (units x price per unit): " + product.getSubtotal());
 		System.out.println(String.format("State tax (%.2f%% - %s)", product.getLocalization().getTax(), 
 				product.getLocalization().name()));
-		System.out.println("Total cost: " + product.getTotalCost());
+		System.out.println(String.format("Total cost: %.2f", product.getTotalCost()));
 		
 		scan.close();
 	}
