@@ -62,7 +62,7 @@ public class USCrimeManager {
 		while (true) {
 			System.out.println("Please, enter the name of the US Crime Data file: ");
 			String fileName = scan.next();
-			this.pathFile = Paths.get(fileName);
+			this.pathFile = Paths.get("./src/com/tnas/assignment/statistics/".concat(fileName));
 			if (!Files.exists(pathFile)) {
 				System.out.println("The file has not been found!");
 			}
