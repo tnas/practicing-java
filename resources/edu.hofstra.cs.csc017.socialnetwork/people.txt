@@ -1,0 +1,6 @@
+Milan|Iliev|01/01/2020|22
+Marcus|Fenix|01/01/2010|32
+Dominic|Torreto|01/01/1970|145
+Thiago|Nascimento|27/07/1982|38
+Donald|Trump|01/09/1914|300
+Joe|Biden|01/01/2021|1

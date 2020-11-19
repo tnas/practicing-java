@@ -1,4 +1,4 @@
-package com.tnas.assignament.calling;
+package com.tnas.assignment.calling;
 
 import java.util.Locale;
 import java.util.Scanner;

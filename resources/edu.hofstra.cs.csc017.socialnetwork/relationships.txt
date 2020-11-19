@@ -1,0 +1,6 @@
+Milan|Iliev|Marcus|Fenix|Friend
+Marcus|Fenix|Dominic|Toretto|Follow
+Thiago|Nascimento|Milan|Iliev|Follow
+Marcus|Fenix|Thiago|Nascimento|Friend
+Thiago|Nascimento|Donald|Trump|Follow
+Thiago|Nascimento|Joe|Biden|Friend
