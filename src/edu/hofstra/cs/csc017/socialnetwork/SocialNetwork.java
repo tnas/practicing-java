@@ -1,126 +1,103 @@
 package edu.hofstra.cs.csc017.socialnetwork;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SocialNetwork {
 	
-	private static final String DEFAULT_DIR = 
-			Paths.get("").toAbsolutePath().toString().concat("/resources/edu.hofstra.cs.csc017.socialnetwork/");
-	private static final String DEFAULT_CONTENT_FILE = DEFAULT_DIR.concat("content.txt");
-	private static final String DEFAULT_PEOPLE_FILE = DEFAULT_DIR.concat("people.txt");
-	private static final String DEFAULT_RELATIONSHIPS_FILE = DEFAULT_DIR.concat("relationships.txt");
-	private static final String NO_DATA_FOUND_MSG = "No data found.";
-	private static final String SPLIT_CHARACTER = "\\|";
-	
-    private ArrayList<Person> persons;
-    private ArrayList<Relationship> relationships;
-    private ArrayList<Content> contents;
-
-    public SocialNetwork() {
-        this.persons = new ArrayList<>();
-        this.relationships = new ArrayList<>();
-        this.contents = new ArrayList<>();
-    }
+    private List<Person> persons;
+    private List<Relationship> relationships;
+    private List<Content> contents;
+    private Person loggedInUser;
+    private SocialNetworkDataSource dataSource;
     
-    public void readPeopleFile(String filePath) {
-    	readFile(filePath).forEach(line -> {
-    		String[] details = line.split(SPLIT_CHARACTER);
-            this.persons.add(new Person(details[0], details[1], details[2], Integer.parseInt(details[3])));
-    	});
-    }
+    private static SocialNetwork _instance;
     
-    public void readContentFile(String filePath) {
-    	readFile(filePath).forEach(line -> {
-    		String[] details = line.split(SPLIT_CHARACTER);
-            this.contents.add(new Content(new Person(details[0], details[1]), details[2]));
-    	});
-    }
-    
-    public void readRelationshipFile(String filePath) {
-    	readFile(filePath).forEach(line -> {
-    		String[] details = line.split(SPLIT_CHARACTER);
-            Relationship relationship = new Relationship(new Person(details[0], details[1]), 
-            		new Person(details[2], details[3]), RelationshipType.fromString(details[4]));
-            this.relationships.add(relationship);
-    	});
+    public static SocialNetwork getInstance() {
+    	if (_instance == null) 
+    		_instance = new SocialNetwork();
+    	return _instance;
     }
 
-    public void listAllPeople() {
-        if (persons.isEmpty()) System.out.println(NO_DATA_FOUND_MSG);
-        this.persons.forEach(System.out::println);
-    }
-
-    public void listAllRelationships() {
-        if (relationships.isEmpty()) System.out.println(NO_DATA_FOUND_MSG);
-        this.relationships.forEach(System.out::println);
-    }
-
-    public void listAllContents() {
-        if (contents.isEmpty()) System.out.println(NO_DATA_FOUND_MSG);
-        this.contents.forEach(System.out::println);
+    private SocialNetwork() {
+    	this.dataSource = new SocialNetworkFileDataSource();
+        this.getLoggedInUser();
     }
     
-    public void loadDefaultData() {
-    	this.readPeopleFile(DEFAULT_PEOPLE_FILE);
-		this.readContentFile(DEFAULT_CONTENT_FILE);
-		this.readRelationshipFile(DEFAULT_RELATIONSHIPS_FILE);
-		System.out.println("Data input successful!");
+    public void defaultInit() {
+    	this.persons = this.dataSource.retrivePeople();
+		this.contents = this.dataSource.retrieveContent();
+		this.relationships = this.dataSource.retrieveRelationships();
+    }
+    
+    public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
+	public void setRelationships(List<Relationship> relationships) {
+		this.relationships = relationships;
+	}
+
+	public void setContents(List<Content> contents) {
+		this.contents = contents;
+	}
+
+	public List<Person> getAllPeople() {
+    	return this.persons;
+    }
+
+    public List<Relationship> getAllRelationships() {
+       return this.relationships;
+    }
+
+    public List<Content> getAllContents() {
+       return this.contents;
     }
     
     public Person getLoggedInUser() {
-    	this.readPeopleFile(DEFAULT_PEOPLE_FILE);
-    	Person loggedInUser = this.persons.get(0);
-    	this.persons.clear();
-    	return loggedInUser;
+    	if (this.loggedInUser == null) {
+	    	this.loggedInUser = this.dataSource.retrivePeople().get(0);
+    	}
+    	return this.loggedInUser;
     }
     
-    public void printMainFeed(Person user) {
+    public List<Content> getMainFeed() {
+    	
+    	List<Content> listMainFeed = new ArrayList<>();
+    	
     	this.relationships.stream()
-    		.filter(rel -> rel.isInRelation(user))
-    		.map(rel ->	rel.getFriend(user))
-    		.map(userFriend -> 
-    				this.contents.stream()
-    				.filter(cont -> cont.getAuthor().equals(userFriend))
-    		)
-    		.forEach(listOfPosts -> listOfPosts.forEach(p -> System.out.println(
-    				String.format("%s by user %s", p.getDetails(), p.getAuthor().getFullName())))
-    		);
+        		.filter(rel -> rel.isInRelation(this.loggedInUser))
+        		.map(rel ->	rel.getFriend(this.loggedInUser))
+        		.map(userFriend -> 
+        				this.contents.stream()
+        				.filter(cont -> cont.getAuthor().equals(userFriend))
+        		)
+        		.forEach(listOfPosts -> listOfPosts.forEach(listMainFeed::add));
+        		
+        return listMainFeed;
     }
     
-    public void printRecommendedFeed(Person user) {
+    public List<Content> getRecommendedFeed() {
+    	
+    	List<Content> listFeed = new ArrayList<>();
+    	
     	List<Person> userFriends = this.relationships.stream()
-    			.filter(rel -> rel.isInRelation(user))
-    			.map(rel ->	rel.getFriend(user))
+    			.filter(rel -> rel.isInRelation(this.loggedInUser))
+    			.map(rel ->	rel.getFriend(this.loggedInUser))
     			.collect(Collectors.toList());
     	
     	userFriends.forEach(friend -> 
     		this.relationships.stream().filter(rel -> 
-    			rel.isInRelation(friend) && !rel.isInRelation(user) && 
+    			rel.isInRelation(friend) && !rel.isInRelation(this.loggedInUser) && 
     				!userFriends.contains(rel.getFriend(friend))
     		)
     		.map(rel ->	rel.getFriend(friend))
     		.map(friendOfFriend -> this.contents.stream()
 				.filter(cont -> cont.getAuthor().equals(friendOfFriend)))
-    		.forEach(listOfPosts -> listOfPosts.forEach(post -> System.out.println
-    				(String.format("%s by user %s", post.getDetails(), post.getAuthor().getFullName()))))
-    		);
+    		.forEach(listOfPosts -> listOfPosts.forEach(listFeed::add)));
+    	
+    	return listFeed;
     }
 
-    private List<String> readFile(String filePath) {
-    	
-        List<String> lines = new ArrayList<>();
-        
-        try {
-            lines = Files.readAllLines(FileSystems.getDefault().getPath(filePath));
-        } catch (Exception e) {
-            System.err.println(String.format("File %s not found!", filePath));
-        }
-        
-        return lines;
-    }
 }
