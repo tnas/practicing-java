@@ -10,9 +10,13 @@ public class SocialNetworkViewCommand implements SocialNetworkView {
 	
 	private Person loggedInUser;
 	private Scanner inputScanner;
+	private boolean isActive;
+	private int userOption;
 	
 	public SocialNetworkViewCommand() {
 		this.inputScanner = new Scanner(System.in);
+		this.isActive = true;
+		this.userOption = 0;
 	}
 	
 	@Override
@@ -23,20 +27,8 @@ public class SocialNetworkViewCommand implements SocialNetworkView {
 	}
 	
 	@Override
-	public void showMenuOptions() {
-        System.out.println(String.format("Welcome to Social Network! (Logged in user: %s)", 
-        		getLoggedInUser().getFullName()));
-        System.out.println("Please choose one of the following options:");
-        System.out.println("0. Load standard files from default directory");
-        System.out.println("1. Enter filename for people");
-        System.out.println("2. Enter filename for relationships");
-        System.out.println("3. Enter filename for content");
-        System.out.println("4. View a list of people");
-        System.out.println("5. View a list of relationships");
-        System.out.println("6. View a list of content");
-        System.out.println("7. Print the main feed.");
-        System.out.println("8. Print the recommended feed.");
-        System.out.println(String.format("%d. Exit", EXIT_OPTION));
+	public int getUserOption() {
+		return this.userOption;
 	}
 
 	@Override
@@ -105,6 +97,42 @@ public class SocialNetworkViewCommand implements SocialNetworkView {
 	@Override
 	public void goodBye() {
 		System.out.println("Have a good day.");
+	}
+
+	@Override
+	public boolean isActive() {
+		
+		while (true) {
+	        System.out.println(String.format("Welcome to Social Network! (Logged in user: %s)", 
+	        		getLoggedInUser().getFullName()));
+	        System.out.println("Please choose one of the following options:");
+	        System.out.println("0. Load standard files from default directory");
+	        System.out.println("1. Enter filename for people");
+	        System.out.println("2. Enter filename for relationships");
+	        System.out.println("3. Enter filename for content");
+	        System.out.println("4. View a list of people");
+	        System.out.println("5. View a list of relationships");
+	        System.out.println("6. View a list of content");
+	        System.out.println("7. Print the main feed.");
+	        System.out.println("8. Print the recommended feed.");
+	        System.out.println(String.format("%d. Exit", EXIT_OPTION));
+	        
+	        try {
+	        	this.userOption = Integer.parseInt(inputScanner.nextLine().trim());
+	        	if (this.userOption < 0 || this.userOption > 9) {
+	        		System.out.println("Invalid option! Try again!");
+	        	}
+	        	else {
+	        		break;
+	        	}
+	        } catch(Exception e) {
+	        	System.out.println("Invalid option! Try again!");
+	        }
+		}
+		
+		if (this.userOption == EXIT_OPTION) this.isActive = false;
+        
+        return this.isActive;
 	}
 	
 }

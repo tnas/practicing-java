@@ -6,7 +6,7 @@ public interface SocialNetworkView {
 
 	Person getLoggedInUser();
 	
-	void showMenuOptions();
+	int getUserOption();
 	
 	void showMainFeed(List<Content> feed);
 	
@@ -25,6 +25,8 @@ public interface SocialNetworkView {
 	String getContentDataSource();
 	
 	String getRelationshipDataSource();
+	
+	boolean isActive();
 	
 	void close();
 }
