@@ -4,6 +4,20 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This program offers an Order System in which a user might select
+ * two types of gifts: {@link FruitBasket} and {@link SweetsBasket}.
+ * The main attributes of each type of gift are stored in the system, 
+ * but the user can define some of them.
+ * 
+ * Additional information may be found on my LinkedIn:
+ * {@link https://www.linkedin.com/in/thiagonascimentorodrigues/} 
+ * 
+ * @author What's my name?
+ * 
+ * @since January 29, 2021
+ *
+ */
 public class OrderSystem {
 
 	private void displayMenu() {
@@ -31,7 +45,6 @@ public class OrderSystem {
 		return opt;
 	}
 	
-	
 	private Gift orderGift(Scanner scan) {
 		
 		Gift gift = null;
@@ -58,17 +71,30 @@ public class OrderSystem {
 		return gift;
 	}
 	
-	private void changeGift(Scanner scan, Gift gift) {
+	private void changeFruitGift(Scanner scan, FruitBasket gift) {
 		System.out.println(String.format("Current gift size is: %s. What size do you want? S, M, or L:", 
 				gift.getSize().id()));
 		String optSize = scan.next();
 		
 		System.out.println(String.format("Current basket citrus=%s. Do you want citrus fruits included? true/false: ", 
-				gift.getSize().id()));
+				gift.isHasCitrusFruits()));
 		boolean optCitrus = scan.nextBoolean();
 		
 		gift.setSize(GiftSize.fromId(optSize));
+		gift.setHasCitrusFruits(optCitrus);
+	}
+	
+	private void changeSweetGift(Scanner scan, SweetsBasket gift) {
+		System.out.println(String.format("Current gift size is: %s. What size do you want? S, M, or L:", 
+				gift.getSize().id()));
+		String optSize = scan.next();
 		
+		System.out.println(String.format("Current basket nuts=%s. Do you want nuts included? true/false: ", 
+				gift.hasNuts()));
+		boolean optCitrus = scan.nextBoolean();
+		
+		gift.setSize(GiftSize.fromId(optSize));
+		gift.setHasNuts(optCitrus);
 	}
 	
 	public static void main(String[] args) {
@@ -78,6 +104,10 @@ public class OrderSystem {
 		OrderSystemOption opt = null;
 		Gift gift = null;
 		
+		/*
+		 * Main loop of the program. It's a command line
+		 * interface between system and user.
+		 */
 		while (opt != OrderSystemOption.EXIT) {
 			
 			orderSystem.displayMenu();
@@ -91,12 +121,19 @@ public class OrderSystem {
 				break;
 				
 			case CHANGE:
-				if (gift == null)
+				if (gift == null) {
 					System.out.println("No gift has been ordered yet\n");
+				}
+				else {
+					if (gift instanceof FruitBasket)
+						orderSystem.changeFruitGift(scan, (FruitBasket) gift);
+					else
+						orderSystem.changeSweetGift(scan, (SweetsBasket) gift);
+				}
 				break;
 				
 			case DISPLAY:
-				System.out.println(gift == null ? "No gift has been ordered yet\n" : gift.toString());
+				System.out.println(gift == null ? "No gift has been ordered yet\n" : gift.toString().concat("\n"));
 				break;
 				
 			case EXIT:
