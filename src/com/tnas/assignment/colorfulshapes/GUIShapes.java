@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tnas.assignment.colorfulshapes.desktop;
+package com.tnas.assignment.colorfulshapes;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,11 +21,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import com.tnas.assignment.colorfulshapes.MyShapes;
-import com.tnas.assignment.colorfulshapes.Oval;
-import com.tnas.assignment.colorfulshapes.Point;
-import com.tnas.assignment.colorfulshapes.Rectangle;
 
 /**
  * Class that implements a GUI for the Part 2.7 of the specification.

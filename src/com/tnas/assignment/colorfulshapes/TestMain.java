@@ -9,8 +9,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.tnas.assignment.colorfulshapes.desktop.GUIShapes;
-
 /**
  * Class that implements the Part 2.7 of the specification.
  * 
