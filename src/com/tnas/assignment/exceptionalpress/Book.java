@@ -20,7 +20,7 @@ public class Book {
 	}
 	
 	public int getPages() {
-		return (int) Math.round(Math.ceil(this.content.length() / CHARACTERS_PER_PAGE));
+		return this.content.length() / CHARACTERS_PER_PAGE;
 	}
 
 	public String getTitle() {
@@ -58,11 +58,6 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Ttitle: " + title + "\nAuthor: " + author + "\nEdition: " + edition;
-	}
-	
-	public static void main(String[] args) {
-		Book book = new Book("Treasure Island", "Rober Louis Stevenson", "Content", 1);
-		System.out.println(book.toString());
 	}
 	
 }

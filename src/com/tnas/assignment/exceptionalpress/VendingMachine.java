@@ -2,7 +2,6 @@ package com.tnas.assignment.exceptionalpress;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,7 @@ public class VendingMachine {
 		this.password = password;
 		this.cassette = 0;
 		this.safe = 0;
-		this.shelf = new ArrayList<Book>();
+		this.shelf = new ArrayList<>();
 	}
 
 	public double getCassette() {
@@ -101,6 +100,6 @@ public class VendingMachine {
 	}
 	
 	private double calculeBookPrice(int index) {
-		return this.shelf.get(index).getPages() * index;
+		return this.shelf.get(index).getPages() * this.locationFactor;
 	}
 }
